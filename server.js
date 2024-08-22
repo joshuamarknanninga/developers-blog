@@ -33,3 +33,10 @@ app.use(routes);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+const sequelize = require('./config/connection');
+const models = require('./models');
+
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+});
