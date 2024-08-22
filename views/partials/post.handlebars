@@ -1,0 +1,18 @@
+<div class="post">
+    <h2>{{title}}</h2>
+    <p>By {{user.username}} on {{createdAt}}</p>
+    <p>{{content}}</p>
+    {{#if showComments}}
+        <div class="comments">
+            {{#each comments}}
+                <p>{{this.comment_text}} - by {{this.user.username}} on {{this.createdAt}}</p>
+            {{/each}}
+        </div>
+        <form class="comment-form">
+            <textarea id="comment-text" name="comment_text" placeholder="Add a comment..."></textarea>
+            <input type="hidden" id="post-id" name="post_id" value="{{id}}">
+            <button type="submit">Submit Comment</button>
+        </form>
+        <script src="/js/comment.js"></script>
+    {{/if}}
+</div>

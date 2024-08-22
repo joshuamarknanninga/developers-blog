@@ -1,0 +1,14 @@
+{{!-- Extend the main layout --}}
+{{#extend 'main'}}
+    {{#content 'title'}}Create Post{{/content}}
+
+    <div class="container">
+        <h2>Create a New Post</h2>
+        <form class="new-post-form">
+            <input type="text" id="post-title" placeholder="Post Title" name="title">
+            <textarea id="post-content" placeholder="Your post content..." name="content"></textarea>
+            <button type="submit">Create Post</button>
+        </form>
+        <script src="/js/create-post.js"></script>
+    </div>
+{{/extend}}

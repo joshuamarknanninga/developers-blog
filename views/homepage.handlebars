@@ -1,0 +1,11 @@
+{{!-- Extend the main layout --}}
+{{!-- Set the page title --}}
+{{#extend 'main'}}
+    {{#content 'title'}}Homepage{{/content}}
+
+    <div class="container">
+        {{#each posts}}
+            {{> post showComments=false}}
+        {{/each}}
+    </div>
+{{/extend}}
