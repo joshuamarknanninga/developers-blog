@@ -2,9 +2,12 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const sequelize = require('./config/connection');  // Import Sequelize connection
+const User = require('./models/User');  // Import User model
+const Post = require('./models/Post');  // Import Post model
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js as the template engine
 const hbs = exphbs.create({});
@@ -29,14 +32,18 @@ app.use(session({
 const routes = require('./controllers');
 app.use(routes);
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Sync models and start the server
+const syncDatabase = async () => {
+    try {
+        // Sync the database, ensuring User is synced before Post
+        await sequelize.sync({ force: false });
+        console.log('Database synced successfully.');
 
-const sequelize = require('./config/connection');
-const models = require('./models');
+        // Start the server
+        app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+    } catch (err) {
+        console.error('Error syncing database:', err);
+    }
+};
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-});
+syncDatabase();

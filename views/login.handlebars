@@ -1,14 +1,12 @@
-{{!-- Extend the main layout --}}
-{{#extend 'main'}}
-    {{#content 'title'}}Login{{/content}}
+
+{{!< main}}
 
     <div class="container login-form">
         <h2>Login</h2>
-        <form>
+        <form method="POST" action="/login"> 
             <input type="text" id="email-login" placeholder="Email" name="email">
             <input type="password" id="password-login" placeholder="Password" name="password">
             <button type="submit">Login</button>
         </form>
     </div>
     <script src="/js/login.js"></script>
-{{/extend}}
