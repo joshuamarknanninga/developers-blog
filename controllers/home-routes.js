@@ -6,10 +6,7 @@ router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
             include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
+                [{ model: User, attributes: ['username'] }],
             ],
         });
 
@@ -20,8 +17,8 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             title: 'Home Page',  // Ensure the title is being passed here
-            posts,
             logged_in: req.session.logged_in,
+            user: req.session.user_id ? await User.findByPk(req.session.user_id) : null
         });
     } catch (err) {
         res.status(500).json(err);

@@ -9,10 +9,10 @@
 <body>
     <header>
         <nav>
-            {{#if user}}
-                <a href="/profile">Profile</a>
-                <a href="/dashboard">Dashboard</a>
-                <a href="/logout" id="logoutButton">Logout</a>
+            {{#if logged_in}}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout" id="logoutButton">Logout</a>
+            <a href="/create-post">Create Post</a>
             {{else}}
                 <a href="/login">Login</a>
                 <a href="/signup">Signup</a>

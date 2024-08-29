@@ -1,17 +1,19 @@
 {{!-- Extend the main layout --}}
 {{!< main}}
 
-    <div class="container">
-        <h2>Your Posts</h2>
-        {{#each posts}}
-            {{> post showComments=true}}
-        {{/each}}
+<div class="container">
+    <h2>Your Posts</h2>
+    {{#each posts}}
+        {{> post showComments=true}}
+    {{/each}}
 
+    {{#if logged_in}}
         <h2>Create a New Post</h2>
-        <form class="new-post-form">
-            <input type="text" id="post-title" placeholder="Post Title" name="title">
-            <textarea id="post-content" placeholder="Your post content..." name="content"></textarea>
+        <form class="new-post-form" action="/api/posts" method="POST">
+            <input type="text" id="post-title" placeholder="Post Title" name="title" required>
+            <textarea id="post-content" placeholder="Your post content..." name="content" required></textarea>
             <button type="submit">Create Post</button>
         </form>
-        <script src="/js/create-post.js"></script>
-    </div>
+    {{/if}}
+</div>
+
