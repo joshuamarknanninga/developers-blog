@@ -15,6 +15,9 @@ router.get('/', async (req, res) => {
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
+        console.log('Posts fetched:', posts); // Debug line
+        console.log('Logged in:', req.session.logged_in); // Debug line
+
         res.render('homepage', {
             title: 'Home Page',  // Ensure the title is being passed here
             posts,

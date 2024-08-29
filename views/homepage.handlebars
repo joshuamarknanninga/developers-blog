@@ -1,8 +1,17 @@
-
 {{!< main}}
 
-    <div class="container">
-        {{#each posts}}
-            {{> post showComments=false}}
-        {{/each}}
-    </div>
+<div class="container">
+    <h1>{{title}}</h1>
+
+    {{#if logged_in}}
+        <p>Welcome back, {{user.username}}!</p>
+    {{else}}
+        <p>Please log in to create posts and comment.</p>
+    {{/if}}
+
+    {{#each posts}}
+        {{> post showComments=false}}
+    {{else}}
+        <p>No posts available.</p>
+    {{/each}}
+</div>

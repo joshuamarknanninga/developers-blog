@@ -1,4 +1,4 @@
-document.querySelector('#login-form').addEventListener('submit', async (event) => {
+const loginFormHandler = async (event) => {
     event.preventDefault();
 
     const email = document.querySelector('#email-login').value.trim();
@@ -14,7 +14,12 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
         if (response.ok) {
             document.location.replace('/');
         } else {
-            alert('Failed to log in.');
+            alert('Failed to log in');
         }
     }
-});
+};
+
+document
+    .querySelector('.login-form')
+    .addEventListener('submit', loginFormHandler);
+
