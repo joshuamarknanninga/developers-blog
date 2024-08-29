@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-    {{> header}}
+    <header>
+        <nav>
+            {{#if user}}
+                <a href="/profile">Profile</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout" id="logout">Logout</a>
+            {{else}}
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            {{/if}}
+        </nav>
+    </header>
 
     {{{body}}}
 
     {{> footer}}
-    <script src="/js/logout.js"></script>
+    <script src="public/js/logout.js"></script>
 </body>
 </html>
 
